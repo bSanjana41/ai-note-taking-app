@@ -1,2 +1,7 @@
 # deps
 node_modules/
+
+# build output
+dist/
+*.log
+.env

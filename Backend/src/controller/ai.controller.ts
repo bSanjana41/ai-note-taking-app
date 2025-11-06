@@ -36,11 +36,11 @@ async function callAIML(prompt: string, systemPrompt: string) {
   });
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ error: { message: 'Unknown error' } }));
+    const error = await response.json().catch(() => ({ error: { message: 'Unknown error' } })) as any;
     throw new Error(error.error?.message || error.message || 'AI/ML API error');
   }
 
-  const data = await response.json();
+  const data = await response.json() as any;
   return data.choices?.[0]?.message?.content || data.content || '';
 }
 
