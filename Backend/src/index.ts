@@ -11,7 +11,10 @@ const app = new Hono();
 
 // Middleware
 app.use('/*', cors({
-  origin: ['*'],
+  origin: [
+    'http://localhost:5000',
+    'https://ai-note-taking-app-amber.vercel.app'
+  ],
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
