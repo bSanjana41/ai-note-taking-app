@@ -1,18 +1,22 @@
 {
   "name": "Backend",
   "scripts": {
-    "dev": "ts-node --watch src/index.ts"
+    "dev": "nodemon --exec ts-node src/index.ts"
   },
   "dependencies": {
     "dotenv": "^17.2.3",
     "hono": "^4.10.4",
     "mongoose": "^8.19.3",
-    "zod": "^4.1.12"
+    "zod": "^4.1.12",
+    "bcryptjs": "^2.4.3",
+    "@hono/node-server": "^1.12.0"
   },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/node": "^24.10.0",
+    "@types/bcryptjs": "^2.4.6",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "nodemon": "^3.1.0"
   }
 }

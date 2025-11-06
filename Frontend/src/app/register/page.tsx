@@ -1,18 +1,21 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { RegisterForm } from '@/components/auth/register-form';
+import { ThemeToggle } from '@/components/theme-toggle';
 import api from '@/lib/api';
 
-export default function Home() {
+export default function RegisterPage() {
   const router = useRouter();
+  const [checking, setChecking] = useState(true);
 
   useEffect(() => {
     const verifyAndRedirect = async () => {
       const token = localStorage.getItem('token');
       
       if (!token) {
-        router.push('/login');
+        setChecking(false);
         return;
       }
 
@@ -23,21 +26,34 @@ export default function Home() {
         } else {
           localStorage.removeItem('token');
           localStorage.removeItem('user');
-          router.push('/login');
+          setChecking(false);
         }
       } catch (error) {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        router.push('/login');
+        setChecking(false);
       }
     };
 
     verifyAndRedirect();
   }, [router]);
 
+  if (checking) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div>Loading...</div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div>Loading...</div>
+    <div className="min-h-screen flex flex-col items-center justify-center p-4">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
+      <RegisterForm />
     </div>
   );
 }
+
+
